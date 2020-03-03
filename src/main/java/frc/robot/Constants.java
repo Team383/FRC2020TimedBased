@@ -59,7 +59,7 @@ public final class Constants {
 
     public class Elevator {
         //----------------- Motor Controller
-        public final static int kElevator = 0;
+        public final static int kElevator = 13;
         public final static int kPullUp = 0;
 
         //----------------- Limit switch

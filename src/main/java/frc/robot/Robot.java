@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.ColorMatch;
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -47,22 +49,22 @@ public class Robot extends TimedRobot {
     B, G, R, Y;
   }
 
-  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(Constants.i2cPort);
+  // private final ColorSensorV3 m_colorSensor = new ColorSensorV3(Constants.i2cPort);
 
-  private final ColorMatch m_colorMatcher = new ColorMatch();
+  // private final ColorMatch m_colorMatcher = new ColorMatch();
 
-  private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
-  private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
-  private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
-  private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+  // private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
+  // private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
+  // private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
+  // private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
   // ------------ Drive train ----------------
-  private WPI_TalonSRX FL = new WPI_TalonSRX(Constants.DriveTrain.kFL);
-  private WPI_VictorSPX FR = new WPI_VictorSPX(Constants.DriveTrain.kFR);
-  private WPI_TalonSRX RL = new WPI_TalonSRX(Constants.DriveTrain.kRL);
-  private WPI_VictorSPX RR = new WPI_VictorSPX(Constants.DriveTrain.kRR);
+  // private WPI_TalonSRX FL = new WPI_TalonSRX(Constants.DriveTrain.kFL);
+  // private WPI_VictorSPX FR = new WPI_VictorSPX(Constants.DriveTrain.kFR);
+  // private WPI_TalonSRX RL = new WPI_TalonSRX(Constants.DriveTrain.kRL);
+  // private WPI_VictorSPX RR = new WPI_VictorSPX(Constants.DriveTrain.kRR);
 
-  private DifferentialDrive driveTrain = new DifferentialDrive(FL, FR);
+  // private DifferentialDrive driveTrain = new DifferentialDrive(FL, FR);
 
   // ---------- Controllers---------------
   private Joystick stickMain = new Joystick(Constants.Controller.kStickMainPort);
@@ -72,35 +74,35 @@ public class Robot extends TimedRobot {
   
 
   // --------------Spinner-------------
-  private WPI_TalonSRX spinner = new WPI_TalonSRX(Constants.Spinner.kSpinner);
+  // private WPI_TalonSRX spinner = new WPI_TalonSRX(Constants.Spinner.kSpinner);
 
-  // -------------- Intake --------------------
-  private WPI_TalonSRX intake = new WPI_TalonSRX(Constants.Intake.kIntake);
+  // // -------------- Intake --------------------
+  // private WPI_TalonSRX intake = new WPI_TalonSRX(Constants.Intake.kIntake);
 
-  // -------------- Turret ----------------
-  private WPI_TalonSRX master = new WPI_TalonSRX(Constants.Turret.kMaster);
-  private WPI_VictorSPX slave = new WPI_VictorSPX(Constants.Turret.kSlave);
+  // // -------------- Turret ----------------
+  // private WPI_TalonSRX master = new WPI_TalonSRX(Constants.Turret.kMaster);
+  // private WPI_VictorSPX slave = new WPI_VictorSPX(Constants.Turret.kSlave);
 
-  private WPI_TalonSRX yaw = new WPI_TalonSRX(Constants.Turret.kYaw);
-  private WPI_TalonSRX pitch = new WPI_TalonSRX(Constants.Turret.kPitch);
+  // private WPI_TalonSRX yaw = new WPI_TalonSRX(Constants.Turret.kYaw);
+  // private WPI_TalonSRX pitch = new WPI_TalonSRX(Constants.Turret.kPitch);
 
-  DigitalInput pitchRight = new DigitalInput(Constants.Turret.kPitchRightLM);
-  DigitalInput pitchLeft = new DigitalInput(Constants.Turret.kPitchLeftLM);
+  // DigitalInput pitchRight = new DigitalInput(Constants.Turret.kPitchRightLM);
+  // DigitalInput pitchLeft = new DigitalInput(Constants.Turret.kPitchLeftLM);
 
-  DigitalInput yawRight = new DigitalInput(Constants.Turret.kYawRightLM);
-  DigitalInput yawLeft = new DigitalInput(Constants.Turret.kYawLeftLM);
+  // DigitalInput yawRight = new DigitalInput(Constants.Turret.kYawRightLM);
+  // DigitalInput yawLeft = new DigitalInput(Constants.Turret.kYawLeftLM);
 
   // -------------------Elevator------------------
   private WPI_TalonSRX elevator = new WPI_TalonSRX(Constants.Elevator.kElevator);
-  private WPI_TalonSRX pullUp = new WPI_TalonSRX(Constants.Elevator.kPullUp);
+  // private WPI_TalonSRX pullUp = new WPI_TalonSRX(Constants.Elevator.kPullUp);
 
-  DigitalInput elevatorHigh = new DigitalInput(Constants.Elevator.kElevatorHighLS);
-  DigitalInput elevatorLow = new DigitalInput(Constants.Elevator.kElevatorLowLS);
+  // DigitalInput elevatorHigh = new DigitalInput(Constants.Elevator.kElevatorHighLS);
+  // DigitalInput elevatorLow = new DigitalInput(Constants.Elevator.kElevatorLowLS);
 
   //------------------- Pneumatic subsystem -----------------
   Compressor compressor = new Compressor();
-  DoubleSolenoid grabberSolenoid = new DoubleSolenoid(0,1);
-  DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(0,1);
+  DoubleSolenoid grabberSolenoid = new DoubleSolenoid(2,3);
+  // DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(0,1);
 
   // ---------- Util -------------------
   Timer timer = new Timer();
@@ -113,12 +115,17 @@ public class Robot extends TimedRobot {
 
   public void configureMotorControllers() {
     // --- drive train
-    RL.follow(FL);
-    RR.follow(FR);
+    // RL.follow(FL);
+    // RR.follow(FR);
 
     // ----- turret
-    slave.follow(master);
+    // slave.follow(master);
+
+    //--------------- Elevator --------------
+    elevator.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
+
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -130,10 +137,12 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    m_colorMatcher.addColorMatch(kBlueTarget);
-    m_colorMatcher.addColorMatch(kGreenTarget);
-    m_colorMatcher.addColorMatch(kRedTarget);
-    m_colorMatcher.addColorMatch(kYellowTarget);
+    // m_colorMatcher.addColorMatch(kBlueTarget);
+    // m_colorMatcher.addColorMatch(kGreenTarget);
+    // m_colorMatcher.addColorMatch(kRedTarget);
+    // m_colorMatcher.addColorMatch(kYellowTarget);
+
+    compressor.start();
 
     configureMotorControllers();
   }
@@ -149,58 +158,59 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    Color detectedColor = m_colorSensor.getColor();
+    // Color detectedColor = m_colorSensor.getColor();
 
-    /**
-     * Run the color match algorithm on our detected color
-     */
+    // /**
+    //  * Run the color match algorithm on our detected color
+    //  */
 
-    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    // ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
-    gameData = DriverStation.getInstance().getGameSpecificMessage();
+    // gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-    if (gameData.equals("B")) {
-      gameDataNum = Cores.B.ordinal();
-    } else if (gameData.equals("G")) {
-      gameDataNum = Cores.G.ordinal();
-    } else if (gameData.equals("R")) {
-      gameDataNum = Cores.R.ordinal();
-    } else if (gameData.equals("Y")) {
-      gameDataNum = Cores.Y.ordinal();
-    }
+    // if (gameData.equals("B")) {
+    //   gameDataNum = Cores.B.ordinal();
+    // } else if (gameData.equals("G")) {
+    //   gameDataNum = Cores.G.ordinal();
+    // } else if (gameData.equals("R")) {
+    //   gameDataNum = Cores.R.ordinal();
+    // } else if (gameData.equals("Y")) {
+    //   gameDataNum = Cores.Y.ordinal();
+    // }
 
-    if (match.color == kBlueTarget) {
-      colorString = "Blue";
-      colorLetras = "B";
-      colorNum = Cores.B.ordinal();
-    } else if (match.color == kRedTarget) {
-      colorString = "Red";
-      colorLetras = "R";
-      colorNum = Cores.R.ordinal();
+    // if (match.color == kBlueTarget) {
+    //   colorString = "Blue";
+    //   colorLetras = "B";
+    //   colorNum = Cores.B.ordinal();
+    // } else if (match.color == kRedTarget) {
+    //   colorString = "Red";
+    //   colorLetras = "R";
+    //   colorNum = Cores.R.ordinal();
 
-    } else if (match.color == kGreenTarget) {
-      colorString = "Green";
-      colorLetras = "G";
-      colorNum = Cores.G.ordinal();
+    // } else if (match.color == kGreenTarget) {
+    //   colorString = "Green";
+    //   colorLetras = "G";
+    //   colorNum = Cores.G.ordinal();
 
-    } else if (match.color == kYellowTarget) {
-      colorString = "Yellow";
-      colorLetras = "Y";
-      colorNum = Cores.Y.ordinal();
+    // } else if (match.color == kYellowTarget) {
+    //   colorString = "Yellow";
+    //   colorLetras = "Y";
+    //   colorNum = Cores.Y.ordinal();
 
-    } else {
-      colorString = "Unknown";
-      colorLetras = "Unknown";
-    }
+    // } else {
+    //   colorString = "Unknown";
+    //   colorLetras = "Unknown";
+    // }
 
-    /**
-     * Open Smart Dashboard or Shuffleboard to see the color detected by the sensor.
-     */
-    SmartDashboard.putNumber("Red", detectedColor.red);
-    SmartDashboard.putNumber("Green", detectedColor.green);
-    SmartDashboard.putNumber("Blue", detectedColor.blue);
-    SmartDashboard.putNumber("Confidence", match.confidence);
-    SmartDashboard.putString("Detected Color", colorString);
+    // /**
+    //  * Open Smart Dashboard or Shuffleboard to see the color detected by the sensor.
+    //  */
+    // SmartDashboard.putNumber("Red", detectedColor.red);
+    // SmartDashboard.putNumber("Green", detectedColor.green);
+    // SmartDashboard.putNumber("Blue", detectedColor.blue);
+    // SmartDashboard.putNumber("Confidence", match.confidence);
+    // SmartDashboard.putString("Detected Color", colorString);
+     SmartDashboard.putNumber("Elevator sensor position", elevator.getSelectedSensorPosition());
   }
 
   /**
@@ -244,7 +254,15 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // --------- manual drive ----------------
-    driveTrain.arcadeDrive(stickMain.getY(), stickRot.getX());
+    // driveTrain.arcadeDrive(stickMain.getY(), stickRot.getX());
+
+    if(xbox.getXButtonPressed()){
+      grabberSolenoid.set(Value.kForward);
+    } else if(xbox.getYButtonPressed()) {
+      grabberSolenoid.set(Value.kReverse);
+    } else{
+      grabberSolenoid.set(Value.kOff);
+    }
   }
 
   /**
