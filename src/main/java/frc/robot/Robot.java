@@ -13,7 +13,9 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -67,6 +69,8 @@ public class Robot extends TimedRobot {
   private Joystick stickRot = new Joystick(Constants.Controller.kStickRotPort);
   private XboxController xbox = new XboxController(Constants.Controller.kXboxPort);
 
+  
+
   // --------------Spinner-------------
   private WPI_TalonSRX spinner = new WPI_TalonSRX(Constants.Spinner.kSpinner);
 
@@ -80,13 +84,23 @@ public class Robot extends TimedRobot {
   private WPI_TalonSRX yaw = new WPI_TalonSRX(Constants.Turret.kYaw);
   private WPI_TalonSRX pitch = new WPI_TalonSRX(Constants.Turret.kPitch);
 
-  DigitalInput turretRight = new DigitalInput(Constants.Turret.kTurretRight);
-  DigitalInput turretLeft = new DigitalInput(Constants.Turret.kTurretLeft);
+  DigitalInput pitchRight = new DigitalInput(Constants.Turret.kPitchRightLM);
+  DigitalInput pitchLeft = new DigitalInput(Constants.Turret.kPitchLeftLM);
+
+  DigitalInput yawRight = new DigitalInput(Constants.Turret.kYawRightLM);
+  DigitalInput yawLeft = new DigitalInput(Constants.Turret.kYawLeftLM);
 
   // -------------------Elevator------------------
   private WPI_TalonSRX elevator = new WPI_TalonSRX(Constants.Elevator.kElevator);
+  private WPI_TalonSRX pullUp = new WPI_TalonSRX(Constants.Elevator.kPullUp);
+
   DigitalInput elevatorHigh = new DigitalInput(Constants.Elevator.kElevatorHighLS);
   DigitalInput elevatorLow = new DigitalInput(Constants.Elevator.kElevatorLowLS);
+
+  //------------------- Pneumatic subsystem -----------------
+  Compressor compressor = new Compressor();
+  DoubleSolenoid grabberSolenoid = new DoubleSolenoid(0,1);
+  DoubleSolenoid spinnerSolenoid = new DoubleSolenoid(0,1);
 
   // ---------- Util -------------------
   Timer timer = new Timer();

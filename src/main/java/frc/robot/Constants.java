@@ -24,6 +24,7 @@ public final class Constants {
     public final static I2C.Port i2cPort = I2C.Port.kOnboard;
 
     public class DriveTrain {
+        // Motor controllers
         public final static int kFL = 1;
         public final static int kFR = 1;
         public final static int kRL = 1;
@@ -31,27 +32,37 @@ public final class Constants {
     }
 
     public class Controller {
+        //USB ports
         public final static int kStickMainPort = 0;
         public final static int kStickRotPort = 1;
         public final static int kXboxPort = 2;
     }
 
     public class Turret {
+        //--------------- Motor controllers --------------------
         public final static int kMaster = 0;
         public final static int kSlave = 0;
 
         public final static int kYaw = 0;
         public final static int kPitch = 0;
 
-        public final static int kTurretRight = 0;
-        public final static int kTurretLeft = 0;
-
         public final static int kFeeder = 0;
+
+        //------------------limit switch ------------------------
+		public final static int kPitchLeftLM = 0;
+        public final static int kPitchRightLM = 0;;
+        
+        public final static int kYawRightLM = 0;
+        public final static int kYawLeftLM = 0;
 
     }
 
     public class Elevator {
+        //----------------- Motor Controller
         public final static int kElevator = 0;
+        public final static int kPullUp = 0;
+
+        //----------------- Limit switch
         public final static int kElevatorHighLS = 0;
         public final static int kElevatorLowLS = 0;
     }
