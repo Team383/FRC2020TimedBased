@@ -19,15 +19,6 @@ import edu.wpi.first.wpilibj.I2C;
  * It is advised to statically import this class (or one of its inner classes)
  * wherever the constants are needed, to reduce verbosity.
  */
-
-
-
-
-
-
-
-
-
 public final class Constants {
 
     public final static I2C.Port i2cPort = I2C.Port.kOnboard;
@@ -79,10 +70,10 @@ public final class Constants {
     public class Elevator {
         //----------------- Motor Controller
         // EC - SRX - Elevator Climb (Climber)
-        public final static int kElevator = 0;
+        public final static int kEC = 0;
 
         // EH - SRX - Elevator Hook (Climber)
-        public final static int kPullUp = 0;
+        public final static int kEH = 0;
 
         //----------------- Limit switch
         public final static int kElevatorHighLS = 0;
