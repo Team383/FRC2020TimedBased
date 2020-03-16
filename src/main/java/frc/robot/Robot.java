@@ -62,12 +62,12 @@ public class Robot extends TimedRobot {
   // 0.113);
 
   // ------------ Drive train ----------------
-  // private WPI_TalonSRX FL = new WPI_TalonSRX(Constants.DriveTrain.kFL);
-  // private WPI_VictorSPX FR = new WPI_VictorSPX(Constants.DriveTrain.kFR);
-  // private WPI_TalonSRX RL = new WPI_TalonSRX(Constants.DriveTrain.kRL);
-  // private WPI_VictorSPX RR = new WPI_VictorSPX(Constants.DriveTrain.kRR);
+  private WPI_TalonSRX LL = new WPI_TalonSRX(Constants.DriveTrain.kLL);
+  private WPI_VictorSPX LR = new WPI_VictorSPX(Constants.DriveTrain.kLR);
+  private WPI_TalonSRX FL = new WPI_TalonSRX(Constants.DriveTrain.kFL);
+  private WPI_VictorSPX FR = new WPI_VictorSPX(Constants.DriveTrain.kFR);
 
-  // private DifferentialDrive driveTrain = new DifferentialDrive(FL, FR);
+  private DifferentialDrive driveTrain = new DifferentialDrive(LL, LR);
 
   // ---------- Controllers---------------
   private Joystick stickMain = new Joystick(Constants.Controller.kStickMainPort);
@@ -86,11 +86,11 @@ public class Robot extends TimedRobot {
   private WPI_VictorSPX feeder = new WPI_VictorSPX(Constants.Intake.kFeeder);
 
   // // -------------- Turret ----------------
-  // private WPI_TalonSRX master = new WPI_TalonSRX(Constants.Turret.kMaster);
-  // private WPI_VictorSPX slave = new WPI_VictorSPX(Constants.Turret.kSlave);
+  private WPI_TalonSRX leadShooter = new WPI_TalonSRX(Constants.Turret.kLS);
+  private WPI_VictorSPX followShooter = new WPI_VictorSPX(Constants.Turret.kFS);
 
-  // private WPI_TalonSRX yaw = new WPI_TalonSRX(Constants.Turret.kYaw);
-  // private WPI_TalonSRX pitch = new WPI_TalonSRX(Constants.Turret.kPitch);
+  private WPI_TalonSRX yawShooter = new WPI_TalonSRX(Constants.Turret.kYS);
+  private WPI_TalonSRX pithShooter = new WPI_TalonSRX(Constants.Turret.kPS);
 
   // DigitalInput pitchRight = new DigitalInput(Constants.Turret.kPitchRightLM);
   // DigitalInput pitchLeft = new DigitalInput(Constants.Turret.kPitchLeftLM);
@@ -99,9 +99,8 @@ public class Robot extends TimedRobot {
   // DigitalInput yawLeft = new DigitalInput(Constants.Turret.kYawLeftLM);
 
   // -------------------Elevator------------------
-  // private WPI_TalonSRX elevator = new
-  // WPI_TalonSRX(Constants.Elevator.kElevator);
-  // private WPI_TalonSRX pullUp = new WPI_TalonSRX(Constants.Elevator.kPullUp);
+  private WPI_TalonSRX elevatorClimber = new WPI_TalonSRX(Constants.Elevator.kEC);
+  private WPI_TalonSRX pullUp = new WPI_TalonSRX(Constants.Elevator.kEH);
 
   // DigitalInput elevatorHigh = new
   // DigitalInput(Constants.Elevator.kElevatorHighLS);
