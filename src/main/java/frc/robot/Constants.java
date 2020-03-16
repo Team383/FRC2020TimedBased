@@ -55,8 +55,6 @@ public final class Constants {
         public final static int kYS = 22;
         public final static int kPS = 23;
 
-        // FE - SPX - Feeder (Power Cells)
-        public final static int kFeeder = 24;
 
         //------------------limit switch ------------------------
 		public final static int kPitchLeftLM = 0;
@@ -67,6 +65,10 @@ public final class Constants {
 
     }
     public class Intake {
+
+        // FE - SPX - Feeder (Power Cells)
+        public final static int kFeeder = 24;
+
         // IN - SPX - Intake (Power Cells)
         public final static int kIntake = 25;
 
@@ -75,6 +77,8 @@ public final class Constants {
         public final static int kLT = 26;
         // FT - SPX - Follow Transporter (Power Cells)
         public final static int kFT = 27;
+
+        
 
         
     }

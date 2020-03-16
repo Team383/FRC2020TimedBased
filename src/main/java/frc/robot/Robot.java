@@ -81,8 +81,8 @@ public class Robot extends TimedRobot {
 
   // // -------------- Intake --------------------
   private WPI_VictorSPX intake = new WPI_VictorSPX(Constants.Intake.kIntake);
-  private WPI_VictorSPX transporterFront= new WPI_VictorSPX(Constants.Intake.kTransporterFront);
-  private WPI_VictorSPX transporterBack = new WPI_VictorSPX(Constants.Intake.kTransporterBack);
+  private WPI_VictorSPX transporterFront= new WPI_VictorSPX(Constants.Intake.kLT);
+  private WPI_VictorSPX transporterBack = new WPI_VictorSPX(Constants.Intake.kFT);
   private WPI_VictorSPX feeder = new WPI_VictorSPX(Constants.Intake.kFeeder);
 
   // // -------------- Turret ----------------
