@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.util.WPILibVersion;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -61,12 +62,12 @@ public class Robot extends TimedRobot {
   // 0.113);
 
   // ------------ Drive train ----------------
-  private WPI_TalonSRX LL = new WPI_TalonSRX(Constants.DriveTrain.kLL);
-  private WPI_VictorSPX LR = new WPI_VictorSPX(Constants.DriveTrain.kLR);
-  private WPI_TalonSRX FR = new WPI_TalonSRX(Constants.DriveTrain.kFL);
-  private WPI_VictorSPX FL = new WPI_VictorSPX(Constants.DriveTrain.kFR);
+  // private WPI_TalonSRX FL = new WPI_TalonSRX(Constants.DriveTrain.kFL);
+  // private WPI_VictorSPX FR = new WPI_VictorSPX(Constants.DriveTrain.kFR);
+  // private WPI_TalonSRX RL = new WPI_TalonSRX(Constants.DriveTrain.kRL);
+  // private WPI_VictorSPX RR = new WPI_VictorSPX(Constants.DriveTrain.kRR);
 
-  private DifferentialDrive driveTrain = new DifferentialDrive(LL, LR);
+  // private DifferentialDrive driveTrain = new DifferentialDrive(FL, FR);
 
   // ---------- Controllers---------------
   private Joystick stickMain = new Joystick(Constants.Controller.kStickMainPort);
@@ -80,18 +81,16 @@ public class Robot extends TimedRobot {
 
   // // -------------- Intake --------------------
   private WPI_VictorSPX intake = new WPI_VictorSPX(Constants.Intake.kIntake);
-
-  //------------------ Transporter ------------------
-
-  private WPI_VictorSPX leadTransporter = new WPI_VictorSPX(Constants.Intake.kLT);
-  private WPI_VictorSPX followTransporter = new WPI_VictorSPX(Constants.Intake.kFT);
+  private WPI_VictorSPX transporterFront= new WPI_VictorSPX(Constants.Intake.kTransporterFront);
+  private WPI_VictorSPX transporterBack = new WPI_VictorSPX(Constants.Intake.kTransporterBack);
+  private WPI_VictorSPX feeder = new WPI_VictorSPX(Constants.Intake.kFeeder);
 
   // // -------------- Turret ----------------
-  private WPI_TalonSRX leadShooter = new WPI_TalonSRX(Constants.Turret.kLS);
-  private WPI_VictorSPX followShooter = new WPI_VictorSPX(Constants.Turret.kFS);
+  // private WPI_TalonSRX master = new WPI_TalonSRX(Constants.Turret.kMaster);
+  // private WPI_VictorSPX slave = new WPI_VictorSPX(Constants.Turret.kSlave);
 
-  private WPI_TalonSRX yawShooter = new WPI_TalonSRX(Constants.Turret.kYS);
-  private WPI_TalonSRX pitchShooter = new WPI_TalonSRX(Constants.Turret.kPS);
+  // private WPI_TalonSRX yaw = new WPI_TalonSRX(Constants.Turret.kYaw);
+  // private WPI_TalonSRX pitch = new WPI_TalonSRX(Constants.Turret.kPitch);
 
   // DigitalInput pitchRight = new DigitalInput(Constants.Turret.kPitchRightLM);
   // DigitalInput pitchLeft = new DigitalInput(Constants.Turret.kPitchLeftLM);
@@ -100,9 +99,9 @@ public class Robot extends TimedRobot {
   // DigitalInput yawLeft = new DigitalInput(Constants.Turret.kYawLeftLM);
 
   // -------------------Elevator------------------
-  private WPI_TalonSRX elevatorClimber = new WPI_TalonSRX(Constants.Elevator.kEC);
-
-  private WPI_TalonSRX elevatorHook = new WPI_TalonSRX(Constants.Elevator.kEH);
+  // private WPI_TalonSRX elevator = new
+  // WPI_TalonSRX(Constants.Elevator.kElevator);
+  // private WPI_TalonSRX pullUp = new WPI_TalonSRX(Constants.Elevator.kPullUp);
 
   // DigitalInput elevatorHigh = new
   // DigitalInput(Constants.Elevator.kElevatorHighLS);
@@ -127,6 +126,9 @@ public class Robot extends TimedRobot {
     // --- drive train
     // RL.follow(FL);
     // RR.follow(FR);
+
+    // ----- intake / transporters
+    transporterBack.follow(transporterFront);
 
     // ----- turret
     // slave.follow(master);
@@ -286,25 +288,27 @@ public class Robot extends TimedRobot {
     // liga todos motores do sistema de pegar bolas
     if (xbox.getRawButton(1)) { // A
       intake.set(1.0);
-      spinner.set(1.0);
+      transporterFront.set(1.0);
     } else {
       intake.set(.0);
-      spinner.set(.0);
+      transporterFront.set(.0);
     }
 
-    // intake
-    if (xbox.getRawButton(2)) { // B
-      intake.set(1.0);
-    } else {
-      intake.set(.0);
-    }
+    // // intake
+    // if (xbox.getRawButton(2)) { // B
+    //   intake.set(1.0);
+    // } else {
+    //   intake.set(.0);
+    // }
 
-    // spinner
-    if (xbox.getRawButton(3)) { // B
-      spinner.set(1.0);
-    } else {
-      spinner.set(.0);
-    }
+    // // transporterBottom
+    // if (xbox.getRawButton(3)) { // X
+    //   transporterFront.set(1.0);
+    // } else {
+    //   transporterFront.set(.0);
+    // }
+
+   
 
   }
 
