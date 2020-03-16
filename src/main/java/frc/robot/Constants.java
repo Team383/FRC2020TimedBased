@@ -59,7 +59,7 @@ public final class Constants {
 
     public class Elevator {
         //----------------- Motor Controller
-        public final static int kElevator = 13;
+        public final static int kElevator = 0;
         public final static int kPullUp = 0;
 
         //----------------- Limit switch
@@ -68,10 +68,12 @@ public final class Constants {
     }
 
     public class Intake {
-        public final static int kIntake = 0;
+        public final static int kIntake = 20;
     }
 
     public class Spinner {
-        public final static int kSpinner = 0;
+        public final static int kSpinner = 21;
+        public final static double kSpinnerTickstoRotations = 1024;
     }
+
 }
