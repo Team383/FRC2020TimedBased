@@ -19,16 +19,29 @@ import edu.wpi.first.wpilibj.I2C;
  * It is advised to statically import this class (or one of its inner classes)
  * wherever the constants are needed, to reduce verbosity.
  */
+
+
+
+
+
+
+
+
+
 public final class Constants {
 
     public final static I2C.Port i2cPort = I2C.Port.kOnboard;
 
     public class DriveTrain {
         // Motor controllers
-        public final static int kFL = 1;
+        // LR - SRX - Lead Right 
+        // LL - SRX - Lead Left 
+        // FR - SPX - Follow Right 
+        // FL - SPX - Follow Left 
+        public final static int kLR = 1;
+        public final static int kLL = 1;
         public final static int kFR = 1;
-        public final static int kRL = 1;
-        public final static int kRR = 1;
+        public final static int kFL = 1;
     }
 
     public class Controller {
@@ -40,12 +53,18 @@ public final class Constants {
 
     public class Turret {
         //--------------- Motor controllers --------------------
-        public final static int kMaster = 0;
-        public final static int kSlave = 0;
+       
+        // LS - SRX - Lead Shooter (Power Cells)
+        // FS - SPX - Follow Shooter (Power Cells)
+        public final static int kLS = 0;
+        public final static int kFS = 0;
 
-        public final static int kYaw = 0;
-        public final static int kPitch = 0;
+        // YS - SRX - Yaw Shooter (Power Cells)
+        // PS - SRX - pitch Shooter (Power Cells)
+        public final static int kYS = 0;
+        public final static int kPS = 0;
 
+        // FE - SPX - Feeder (Power Cells)
         public final static int kFeeder = 0;
 
         //------------------limit switch ------------------------
@@ -59,7 +78,10 @@ public final class Constants {
 
     public class Elevator {
         //----------------- Motor Controller
+        // EC - SRX - Elevator Climb (Climber)
         public final static int kElevator = 0;
+
+        // EH - SRX - Elevator Hook (Climber)
         public final static int kPullUp = 0;
 
         //----------------- Limit switch
@@ -68,10 +90,20 @@ public final class Constants {
     }
 
     public class Intake {
+        // IN - SPX - Intake (Power Cells)
         public final static int kIntake = 20;
+
+        //--------------------Transporter--------------
+        // LT - SPX - Lead Transporter (Power Cells)
+        public final static int kLT = 20;
+        // FT - SPX - Follow Transporter (Power Cells)
+        public final static int kFT = 20;
+
+        
     }
 
     public class Spinner {
+        // SP - SRX - Spinner (Control Panel)
         public final static int kSpinner = 21;
         public final static double kSpinnerTickstoRotations = 1024;
     }
